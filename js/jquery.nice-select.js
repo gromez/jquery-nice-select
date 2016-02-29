@@ -31,7 +31,7 @@
             ($(this).is(':selected') ? ' selected' : '') +
             ($(this).is(':disabled') ? ' disabled' : '') +
             '" data-value="' + $(this).val() + '"' +
-            (display ? ' data-display="' + display : '') + '"' +
+            (display ? ' data-display="' + display + '"' : '') +
             '>' + $(this).text() + '</li>');
         });
       }
