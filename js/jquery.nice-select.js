@@ -66,17 +66,22 @@
     });
     
     // Option click
-    $(document).on('click.nice_select', '.nice-select .option:not(.disabled)', function(event) {
+    $(document).on('click.nice_select', '.nice-select .option', function(event) {
       var option = $(this);
       var dropdown = option.closest('.nice-select');
-      
-      dropdown.find('.selected').removeClass('selected');
-      option.addClass('selected');
-      
-      var text = option.data('display') || option.text();
-      dropdown.find('.current').text(text);
-      
-      dropdown.prev('select').val(option.data('value')).trigger('change');
+
+      if (option.hasClass('disabled')) {
+        event.stopPropagation();
+      }
+      else {
+        dropdown.find('.selected').removeClass('selected');
+        option.addClass('selected');
+
+        var text = option.data('display') || option.text();
+        dropdown.find('.current').text(text);
+
+        dropdown.prev('select').val(option.data('value')).trigger('change');
+      }
     });
 
     // Keyboard events
